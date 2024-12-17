@@ -11,7 +11,9 @@ const DateRangeSelector = ({
     onDateSelect,
     onApply,
     activeTab,
-    onTabChange
+    onTabChange,
+    onAsOfDateChange,
+    asOfDate
 }) => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedRange, setSelectedRange] = useState('currentMonth');
@@ -20,11 +22,7 @@ const DateRangeSelector = ({
         start: new Date(),
         end: new Date(new Date().setMonth(new Date().getMonth() + 1, 0))
     });
-    const [asOfDate, setAsOfDate] = useState(() => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        return yesterday;
-    });
+    const [asOfDateLocal, setAsOfDateLocal] = useState(asOfDate || new Date());
 
 
     const handleDateSelection = (dates) => {
@@ -58,6 +56,11 @@ const DateRangeSelector = ({
         const newDate = new Date(currentMonth);
         newDate.setFullYear(year);
         handleMonthChange(newDate);
+    };
+
+    const handleAsOfDateChange = () => {
+        //console.log('handleAsOfDateChange', date);
+        onAsOfDateChange(asOfDateLocal);
     };
 
     return (
@@ -99,14 +102,15 @@ const DateRangeSelector = ({
             <div className="calendar">
                 <button className="apply-button" onClick={onApply}>Apply</button>
 
-                <div style={{ marginTop: '20px' }}>
-                    <label>As Of Date</label>
+                <div style={{ marginTop: '20px', textAlign: 'left' }}>
+                    <label className="as-of-date-label">As Of Date</label>
                     <input
                         type="date"
-                        value={asOfDate.toISOString().split('T')[0]}
-                        onChange={(e) => setAsOfDate(new Date(e.target.value))}
+                        value={asOfDateLocal?.toISOString().split('T')[0]}
+                        onChange={(e) => setAsOfDateLocal(new Date(e.target.value))}
+                        style={{ marginLeft: '10px' }}
                     />
-                    <button className="apply-button">Apply</button>
+                    <button className="apply-button" onClick={handleAsOfDateChange}>Apply</button>
                 </div>
             </div>
         </div>

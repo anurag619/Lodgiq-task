@@ -4,7 +4,8 @@ const HeaderComponent = ({
     date
 }) => {
     const formatDate = (date) => {
-        return date.toLocaleDateString('en-US', {
+        console.log('date', date);
+        return date?.toLocaleDateString('en-US', {
             weekday: 'short',
             month: 'short',
             day: '2-digit',

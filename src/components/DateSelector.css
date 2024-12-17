@@ -261,6 +261,13 @@
     padding: 12px;
 }
 
+.as-of-date-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0;
+    display: block;
+}
+
 .month-display {
     font-size: 14px;
     font-weight: bold;

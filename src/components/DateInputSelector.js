@@ -20,7 +20,11 @@ const DateInputSelector = () => {
     const [selectedDates, setSelectedDates] = useState(getDefaultDates());
     const dropdownRef = useRef(null);
     const inputRef = useRef(null);
-
+    const [asOfDate, setAsOfDate] = useState(() => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        return yesterday;
+    });
 
 
     // Format the displayed date range
@@ -41,6 +45,7 @@ const DateInputSelector = () => {
     const handleApply = () => {
         setSelectedDates(selectedDates);
         setIsOpen(false);
+        // TODO: Call API to get data for the selected dates
     };
 
     const handleNavigation = (direction) => {
@@ -72,6 +77,11 @@ const DateInputSelector = () => {
         handleNavigation('next');
     };
 
+    const handleAsOfDateChange = (inputDate) => {
+        setAsOfDate(inputDate);
+        setIsOpen(false);
+    };
+
     // Handle click outside
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -96,6 +106,7 @@ const DateInputSelector = () => {
                 }}
                 onPrevious={() => handleNavigation('prev')}
                 onNext={() => handleNavigation('next')}
+                date={asOfDate}
             />
 
             <div className="header-nav">
@@ -126,6 +137,8 @@ const DateInputSelector = () => {
                     onApply={handleApply}
                     activeTab={activeTab}
                     onTabChange={setActiveTab}
+                    onAsOfDateChange={handleAsOfDateChange}
+                    asOfDate={asOfDate}
                 />
             </div>
         </div>
