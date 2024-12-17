@@ -47,7 +47,6 @@ const CalendarComponent = ({
             weeks.push(getWeekDays(currentDate));
             currentDate.setDate(currentDate.getDate() + 7);
         }
-
         return weeks;
     };
 

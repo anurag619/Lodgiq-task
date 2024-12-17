@@ -4,6 +4,7 @@ import TabsComponent from './TabsComponent';
 import CalendarComponent from './CalendarComponent';
 import MonthsComponent from './MonthsComponent';
 import RangeSelection from './RangeSelection.js';
+
 import './DateSelector.css';
 
 const DateRangeSelector = ({
@@ -38,7 +39,7 @@ const DateRangeSelector = ({
     };
 
     const handleMonthSelect = (monthIndex) => {
-        console.log('monthIndex--', monthIndex);
+        //console.log('monthIndex--', monthIndex);
 
         const start = new Date(currentMonth.getFullYear(), monthIndex, 1);
         const end = new Date(currentMonth.getFullYear(), monthIndex + 1, 0);
@@ -97,7 +98,6 @@ const DateRangeSelector = ({
                     onYearChange={handleYearChange}
                 />
             )}
-
 
             <div className="calendar">
                 <button className="apply-button" onClick={onApply}>Apply</button>

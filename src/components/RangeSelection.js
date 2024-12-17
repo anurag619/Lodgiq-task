@@ -12,7 +12,6 @@ const RangeSelection = ({
     const [activeDateInput, setActiveDateInput] = useState(null); // 'start' or 'end'
 
     const calculateDateRange = (type) => {
-
         const today = new Date();
         const start = new Date();
         const end = new Date();
@@ -141,7 +140,6 @@ const RangeSelection = ({
                                 className={activeDateInput === 'end' ? 'active' : ''}
                             />
                         </div>
-
                     )
                 }
 
@@ -174,7 +172,6 @@ const RangeSelection = ({
                     )
                 }
             </div>
-
         </div>
     );
 };
